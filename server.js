@@ -21,7 +21,7 @@ while (true) {
   current_sleep = 3000;
 
   let webhallen_count = 0;
-  let inet_clound = 0;
+  let inet_count = 0;
   let komplett_count = 0;
 
   for (const card of webhallen.cards) {
