@@ -1,4 +1,5 @@
 const webhallen = {
+    name: "WEBHALLEN",
     selectors: {
         title: ".product-top h1",
         price: ".price-value",

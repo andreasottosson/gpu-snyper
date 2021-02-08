@@ -3,6 +3,8 @@ import StealthPlugin from "puppeteer-extra-plugin-stealth";
 
 function snyper(store, url, selectors) {
 
+  // console.log(store, url, selectors)
+
 // add stealth plugin and use defaults (all evasion techniques)
 puppeteer.use(StealthPlugin());
 

@@ -14,33 +14,25 @@ function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
+async function runSnyper(store) {
+
+  // console.log(store)
+
+  let count = 0;
+  let current_sleep = 3000;
+
+  for (const card of store.cards) {
+    // Randomize sleep & "chunk"
+    await sleep(current_sleep);
+    snyper(store.name, card, store.selectors);
+    count++;
+  }
+};
+
 // Run all checks
 while (true) {
-
-  let current_sleep;
-  current_sleep = 3000;
-
-  let webhallen_count = 0;
-  let inet_count = 0;
-  let komplett_count = 0;
-
-  for (const card of webhallen.cards) {
-    // Randomize sleep & "chunk"
-    await sleep(current_sleep);
-    snyper("WEBHALLEN", card, webhallen.selectors);
-    webhallen_count++;
-  }
-  for (const card of inet.cards) {
-    // Randomize sleep & "chunk"
-    await sleep(current_sleep);
-    snyper("INET", card, inet.selectors);
-    inet_count++;
-  }
-  for (const card of komplett.cards) {
-    // Randomize sleep & "chunk"
-    await sleep(current_sleep);
-    snyper("KOMPLETT", card, komplett.selectors);
-    komplett_count++;
-  }
+  await runSnyper(inet);
+  await runSnyper(komplett);
+  await runSnyper(webhallen);
 
 }

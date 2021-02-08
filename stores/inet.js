@@ -1,4 +1,5 @@
 const inet = {
+    name: "INET",
     selectors: {
         title: ".product-description h1",
         price: ".box-body > .price",

@@ -1,4 +1,5 @@
 const komplett = {
+    name: "KOMPLETT",
     selectors: {
         title: ".product-main-info-webtext1",
         price: ".product-price-now",
