@@ -1,12 +1,11 @@
-const puppeteer = require("puppeteer-extra");
+import puppeteer from "puppeteer-extra";
+import StealthPlugin from "puppeteer-extra-plugin-stealth";
+
+function inet(url) {
+
 
 // add stealth plugin and use defaults (all evasion techniques)
-const StealthPlugin = require("puppeteer-extra-plugin-stealth");
 puppeteer.use(StealthPlugin());
-
-//const url = "https://www.inet.se/produkt/5407413/asus-geforce-gtx-1660-6gb-tuf-gaming-oc";
-const url =
-  "https://www.inet.se/produkt/5411883/asus-geforce-rtx-3060-ti-8gb-tuf-gaming-oc";
 
 const red_text = "\x1b[31m%s\x1b[0m";
 const green_text = "\x1b[32m%s\x1b[0m";
@@ -68,3 +67,6 @@ puppeteer
     }
     await browser.close();
   });
+}
+
+export default inet;
