@@ -4,6 +4,7 @@ import snyper from "./snyper.js";
 import inet from "./stores/inet.js";
 import komplett from "./stores/komplett.js";
 import webhallen from "./stores/webhallen.js";
+import netonnet from "./stores/netonnet.js";
 
 process.setMaxListeners(0);
 
@@ -29,8 +30,10 @@ async function runSnyper(store) {
   }
 };
 
+
 // Run all checks
 while (true) {
+  await runSnyper(netonnet);
   await runSnyper(inet);
   await runSnyper(komplett);
   await runSnyper(webhallen);
