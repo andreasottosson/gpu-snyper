@@ -1,15 +1,15 @@
 import puppeteer from "puppeteer-extra";
 import StealthPlugin from "puppeteer-extra-plugin-stealth";
+import chalk from "chalk";
+
+const log = console.log;
 
 function snyper(store, url, selectors) {
 
-  // console.log(store, url, selectors)
+  //log(store, url, selectors)
 
   // add stealth plugin and use defaults (all evasion techniques)
   puppeteer.use(StealthPlugin());
-
-  const red_text = "\x1b[31m%s%s\x1b[0m";
-  const green_text = "\x1b[32m%s%s\x1b[0m";
 
   puppeteer
     .launch({
@@ -31,14 +31,14 @@ function snyper(store, url, selectors) {
       });
   
       try {
-        console.log(url)
+
         await page.goto(url, {
           waitUntil: 'networkidle2',
           timeout: 3000000
         });
         // await page.screenshot({path: 'example.png'});
 
-        const data = await page.evaluate(selectors => {
+        const data = await page.evaluate((store, selectors) => {
           
           let title = "";
           let price = "";
@@ -61,7 +61,11 @@ function snyper(store, url, selectors) {
             stock = document.querySelector(selectors.stock).innerText;
           } catch (e) {
             console.error(e);
-            stock = "SCRAPE ERROR";
+            if (store === "KOMPLETT") {
+              stock = "0";
+            } else {
+              stock = "SCRAPE ERROR"
+            }
           }
 
           return [
@@ -69,9 +73,10 @@ function snyper(store, url, selectors) {
             price,
             stock
           ]
-        }, selectors);
+        }, store, selectors);
         
         function inStock(stock_val) {
+
           if (store === "INET" && stock_val.trim().toString() == "0 st") {
             return false;
           } else if (store === "INET" && stock_val.trim().toString() == "- st") {
@@ -92,8 +97,13 @@ function snyper(store, url, selectors) {
             return true;
           }
         };
-      
-        console.log(inStock(data[2]) ? green_text : red_text, store, data, inStock(data[2]) ? page.url() : "");
+
+        log(chalk`{${inStock(data[2]) ? "bgGreen" : "dim"} ${store} ${data[0]} ${data[1]} ${data[2]}} ${inStock(data[2]) ? page.url() : ""}`)
+
+        // TODO:
+        // if (inStock(data.stock)) {
+        //   sendNotification(data, page.url);
+        // }
 
       } catch (e) {
         console.error(e)

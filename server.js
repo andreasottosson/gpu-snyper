@@ -17,25 +17,45 @@ function sleep(ms) {
 
 async function runSnyper(store) {
 
-  // console.log(store)
+  let current_store = store;
 
-  let count = 0;
-  let current_sleep = 3000;
+  //console.log(store)
 
-  for (const card of store.cards) {
-    // Randomize sleep & "chunk"
-    await sleep(current_sleep);
-    snyper(store.name, card, store.selectors);
-    count++;
-  }
+  try {
+    if (current_store.cards.length === 0) {
+      // code that runs after the whole array is executed
+    } else {
+      let current_sleep = 5000; // randomize value
+      let current_chunk = 2; // randomize value
+    
+      let store_chunk = {
+        name: current_store.name,
+        selectors: current_store.selectors,
+        cards: current_store.cards.splice(0, current_chunk)
+      }
+
+      // console.log(store_chunk)
+
+      for (const card of store_chunk.cards) {
+        snyper(current_store.name, card, current_store.selectors);
+        await sleep(current_sleep);
+      }
+
+      setImmediate(() => {
+        runSnyper(current_store)   
+      })
+    }
+  } catch(e) {
+      console.warn(e);
+  } 
+  
 };
 
 
 // Run all checks
-while (true) {
-  await runSnyper(netonnet);
-  await runSnyper(inet);
-  await runSnyper(komplett);
-  await runSnyper(webhallen);
-
-}
+setImmediate(() => {
+  runSnyper(netonnet);
+  runSnyper(inet);
+  runSnyper(komplett);
+  runSnyper(webhallen);
+});
