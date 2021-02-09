@@ -25,8 +25,8 @@ async function runSnyper(store) {
     if (current_store.cards.length === 0) {
       // code that runs after the whole array is executed
     } else {
-      let current_sleep = 5000; // randomize value
-      let current_chunk = 2; // randomize value
+      let current_sleep = Math.floor(Math.random() * 12000) + 3000; // random value from 3s to 15s
+      let current_chunk = Math.floor(Math.random() * 5) + 1; // random value from 1 to 5
     
       let store_chunk = {
         name: current_store.name,
