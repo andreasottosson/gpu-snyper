@@ -52,7 +52,6 @@ const inet = {
         "https://www.inet.se/produkt/5411677/asus-geforce-rtx-3080-10gb-rog-strix-gaming-oc",
         "https://www.inet.se/produkt/5411673/asus-geforce-rtx-3080-10gb-tuf-gaming",
         "https://www.inet.se/produkt/5411697/asus-geforce-rtx-3080-10gb-tuf-gaming-oc",
-        "https://www.inet.se/produkt/5412023/gigabyte-geforce-rtx-3080-10gb-aorus-gaming-box",
         "https://www.inet.se/produkt/5411768/gigabyte-geforce-rtx-3080-10gb-aorus-master",
         "https://www.inet.se/produkt/5411781/gigabyte-geforce-rtx-3080-10gb-aorus-xtreme",
         "https://www.inet.se/produkt/5411866/gigabyte-geforce-rtx-3080-10gb-aorus-xtreme-waterforce",
