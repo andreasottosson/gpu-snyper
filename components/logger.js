@@ -47,7 +47,6 @@ const logger = (store, count, cards_count, data, url) => {
     );
 
     if (inStock(data[2])) {
-        log("PUSHOVER SENT");
         notifier(store, data, url);
     }
 }

@@ -8,7 +8,7 @@ const snypergot = (store, url, selectors, count, cards_count) => {
     const $ = cheerio.load(response.body);
   
     const data = [
-      $(selectors.title).text(),
+      $(selectors.title).first().text(),
       $(selectors.price).text(),
       $(selectors.stock).first().text()
     ]
