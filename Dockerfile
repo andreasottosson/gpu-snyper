@@ -1,4 +1,4 @@
-FROM node:14.15.4
+FROM node:14
 
 WORKDIR /home/runner/app
 ADD package*.json ./
@@ -18,6 +18,8 @@ RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key
 #     browser.launch({executablePath: 'google-chrome-unstable'})
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD true
 
+# Source code
+COPY . .
 
 # Install node modules
 RUN npm i\
@@ -30,5 +32,5 @@ RUN npm i\
 
 USER runner
 
-CMD ["google-chrome-unstable"]
+CMD ["node", "server.js"]
 
