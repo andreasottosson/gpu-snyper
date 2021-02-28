@@ -1,4 +1,5 @@
 import chalk from "chalk";
+import moment from 'moment';
 import notifier from './notifier.js';
 
 const log = console.log;
@@ -41,7 +42,7 @@ const logger = (store, count, cards_count, data, url) => {
     log(
         chalk`{${
             inStock(data[2]) ? "bgGreen" : "dim"
-        } ${store} ${count}/${cards_count} ${data[0]} ${data[1]} ${data[2]}} ${
+        } ${moment().format('HH:mm:ss')} ${store} ${count}/${cards_count} ${data[0]} ${data[1]} ${data[2]}} ${
             inStock(data[2]) ? url : ""
         }`
     );
