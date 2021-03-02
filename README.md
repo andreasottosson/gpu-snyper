@@ -10,3 +10,5 @@ podman run --rm --security-opt seccomp=chrome.json -v ./:/home/runner/app -it gp
 
 Debug & Dev
 podman run --rm --security-opt seccomp=chrome.json -v ./:/home/runner/app -it gpu-snyper:prod bash
+
+Rename .env.example -> .env and fill in your Pushover keys 
